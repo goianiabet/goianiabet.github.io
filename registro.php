@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["registroSubmit"])) {
             $_SESSION['registration_success'] = 'Registro bem-sucedido!';
             echo "<script>alert('Registro bem-sucedido!'); window.location.href = 'index.html';</script>";
         } else {
-            $_SESSION['registration_error'] = 'Erro ao registrar: ' . $conn->error;
-            echo "<script>alert('Erro ao registrar: " . $conn->error . "');</script>";
+            $_SESSION['registration_error'] = 'Erro ao registrar: ' . $stmt_insert_user->error;
+            echo "<script>alert('Erro ao registrar: " . $stmt_insert_user->error . "');</script>";
         }
     }
     $stmt_check_user->close();
