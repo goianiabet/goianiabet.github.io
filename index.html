@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlapyBirdBet - FBB</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <style>
+        /* Estilos para o corpo da página */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Alterado para min-height para garantir que a altura mínima da tela seja coberta */
+        }
+
+        /* Estilos para o container principal */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%; /* Alterado para uma largura máxima de 90% */
+            width: 100%;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para os botões */
+        .button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Estilos para o menu suspenso */
+        .dropdown-content {
+            display: none;
+            position: relative;
+            min-width: 160px;
+            padding: 12px 16px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Estilos para os campos de entrada no menu suspenso */
+        .dropdown-content input[type="text"],
+        .dropdown-content input[type="password"] {
+            width: calc(100% - 24px);
+            padding: 8px;
+            margin-bottom: 8px;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Estilos para os botões no menu suspenso */
+        .dropdown-content button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Estilos para mensagens de erro */
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+
+        /* Estilos para a seção de informações */
+        #infos {
+            margin-bottom: 20px;
+            max-width: 100%; /* Garante que o texto não ultrapasse a largura do contêiner */
+            text-align: justify; /* Justifica o texto */
+        }
+
+        /* Estilos para os nomes fictícios */
+        .fake-name {
+            color: #007bff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Informações -->
+        <div class="infos" id="infos">
+            <h3>JOGAR AGORA</h3>
+            <p>Rodadas de boas vindas disponíveis</p>
+            <p>Cadastre-se agora e ganhe 10 rodadas grátis</p>
+
+            <h3>FLAPY BIRD BET: AVENTURA E FORTUNA NOS CÉUS!</h3>
+            <p>Bem-vindo ao Flapy Bird Bet, onde os céus são o limite e a diversão nunca para!</p>
+
+            <h3>DESCUBRA A EMOÇÃO:</h3>
+            <p>Prepare-se para uma experiência única e eletrizante! Ao se cadastrar, você recebe um incrível crédito de R$1, equivalente a 10 rodadas grátis para começar sua jornada rumo à fortuna. Cada rodada possui um valor de 10 centavos, oferecendo a você a chance de voar alto e conquistar grandes prêmios!</p>
+
+            <h3>COMO FUNCIONA:</h3>
+            <p>No Flapy Bird Bet, cada rodada é uma emocionante oportunidade de vitória. Mas cuidado! Se por acaso perder uma rodada, o valor vai direto para o prêmio acumulado, aumentando ainda mais a adrenalina do jogo. E o melhor está por vir: ao alcançar o level 40, você não só conquista o prêmio acumulado como inicia uma nova jornada rumo a mais vitórias e mais prêmios!</p>
+
+            <h3>JOGUE E GANHE:</h3>
+            <p>Comece sua aventura com 10 rodadas grátis ao se cadastrar! À medida que você joga e acumula vitórias, suas chances de alcançar o level 40 e ganhar o prêmio acumulado aumentam. A competição está acirrada e a fortuna está à sua espera nos céus do Flapy Bird Bet!</p>
+
+            <h3>SAQUE AUTOMÁTICO:</h3>
+            <p>Ao atingir o level 40, o Flapy Bird Bet torna tudo ainda mais emocionante e prático! Nosso sistema realiza automaticamente um PIX para sua conta PIX, garantindo que você receba seus prêmios em menos de 10 minutos. Simples, rápido e sem complicações!</p>
+
+            <h3>CONCLUINDO:</h3>
+            <p>Prepare-se para voar alto, competir e conquistar grandes prêmios no Flapy Bird Bet! Com rodadas de boas-vindas, um sistema de recompensas emocionante e saques automáticos, sua jornada pelo céu está prestes a começar. Venha se juntar a nós e descubra a emoção de ganhar no Flapy Bird Bet!
+            OBS:caso o login nao carregue, clique no botão registrar  e depois em login</p>
+        </div>
+
+        <!-- Formulário de Registro -->
+        <div class="dropdown">
+            
+            <button class="button" onclick="toggleDropdown('registroDropdown', 'loginDropdown'); scrollPageDown()">Registrar</button>
+            <div class="dropdown-content" id="registroDropdown">
+                <h2>Registro</h2>
+                <form id="registroForm" action="registro.php" method="post" onsubmit="return validateRegistroForm()">
+                    <label for="registroUsuario">Usuário:</label>
+                    <input type="text" id="registroUsuario" name="usuario" required><br>
+
+                    <label for="registroSenha">Senha:</label>
+                    <input type="password" id="registroSenha" name="senha" required><br>
+
+                    <label for="registroChavePix">Chave PIX:</label>
+                    <input type="text" id="registroChavePix" name="chavePix" required><br>
+
+                    <label for="registroNomeBanco">Nome do Banco:</label>
+                    <input type="text" id="registroNomeBanco" name="nomeBanco" required><br>
+
+                    <input type="submit" name="registroSubmit" value="Registrar">
+                </form>
+                <div id="registroErrorMessage" class="error-message"></div>
+            </div>
+        </div>
+
+        <!-- Formulário de Login -->
+        <div class="dropdown">
+     
+            <button class="button" onclick="toggleDropdown('loginDropdown', 'registroDropdown'); scrollPageDown()">Login</button>
+            <div class="dropdown-content" id="loginDropdown">
+                <h2>Login</h2>
+                <form action="login.php" method="post" onsubmit="return validateLoginForm()">
+                    <label for="usuario">Usuário:</label><br>
+                    <input type="text" id="usuario" name="usuario" required><br>
+                    <label for="senha">Senha:</label><br>
+                    <input type="password" id="senha" name="senha" required><br><br>
+                    <input type="submit" value="Login" name="loginSubmit">
+                </form>
+                <div id="loginErrorMessage" class="error-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "positionClass": "toast-top-left",
+                "timeOut": "5000",
+                "extendedTimeOut": "5000",
+                "closeButton": true,
+                "escapeHtml": false
+            };
+
+            function showNotification() {
+                var nomes = ['olavocarvalho', 'jairsobero', 'Gabrieltozo', 'manelgrilo', 'fulanodetal', 'beltranogames', 'anabananinha', 'tututukama', 'cariocadagema', 'pipocapopcorn', 'barbarafierce', 'joaodotrem', 'jujubaju', 'vivisorriso', 'renatatequila', 'caiovoador', 'amandajoy', 'beijumeliga', 'dalolita', 'katiamagia', 'murilotourinho', 'luizacalma', 'tarcisojoga', 'felixweb', 'roseliw', 'manudavida', 'igorfrei', 'luanacordeiro', 'geisacristina', 'dennisgamess', 'ricksonmx', 'micheltorres', 'jeansenhor', 'stelamaris', 'claudianobre', 'luanaferre', 'fernandoleal', 'davidsinho', 'sergiobranco', 'anabontempo', 'michellekinha', 'mariajulia', 'leticiajogadora', 'pedrosan', 'glaubersouza', 'soniafreefire', 'marceloferreira', 'cleitoncruz', 'williamsiqueira', 'kevinlaranja', 'jeffersonbig', 'marinalopes', 'magnoliorocha', 'emersonmalta', 'leandrofjogos', 'jenniferlinda', 'vanessinhavoa', 'patriciapower', 'paulosantos', 'isabellemarinho', 'rafaelapink', 'luizapower', 'gustavogameplay', 'robsonfeli', 'brunocruz', 'cristianoten', 'ramiresplay', 'edsonlima', 'patriciamaqui', 'mariacat', 'renatosilveira', 'eliasborges', 'larissabr', 'gabrielsantos', 'andrerock', 'juliacarvalho', 'rafaelbala', 'eloisasouza', 'rodrigotodo', 'michelepj', 'rodrigofelipe', 'rodrigobruno', 'carlitosbala', 'samantinha', 'amandaalmeida', 'luanakay', 'sergiocunha', 'sabrinaforte', 'danilowolf', 'renatinhoo', 'luizameira', 'brunapower', 'elaineclara', 'gabrielakale', 'vivianjogos', 'joaomarinho', 'marceloneto', 'camilasousa', 'marcelogamer', 'nayaraflor', 'paolapink', 'giuliapower', 'carlossjogos', 'victorvp', 'fabianogame', 'isadoraf', 'lucasgamer', 'carlitosgamer', 'thiagovp', 'jorginho', 'danielb', 'danielm', 'luizg', 'carolvp', 'robertog', 'fernandos', 'brunapires', 'vanessag', 'rodrigoalves', 'amandas', 'patricias', 'leandrop', 'carlosrocha', 'paulag', 'joaop', 'rodrigos', 'patriciasilva', 'andersonp', 'rodrigopires', 'danilosantos', 'renatas', 'rafaelalves', 'lucaspires', 'marcelogame', 'rodrigop', 'diegofernandes', 'juliovp', 'rafaelvp', 'andref', 'brunogame', 'anapaula', 'paulovp', 'marcosferreira', 'gustavog', 'micheleg', 'renataalves', 'patriciag', 'lucasp', 'andrepires', 'davids', 'patriciad', 'paulas', 'rafaelag', 'rodrigog', 'lucasg', 'lucasfernandes', 'diegogamer', 'thiagov', 'lucasv', 'fabianop', 'carlac', 'carolgame', 'mariaf', 'andreag', 'vanessav', 'fernandag', 'anap', 'fernandaalves', 'marcosgamer', 'marcelog', 'eliasp', 'patriciacosta', 'rafaelc', 'danielm', 'lucasbarros', 'paulov', 'juliog', 'eliane', 'lucasf', 'rodrigogames', 'brunog', 'mariafernanda', 'rodrigofernandes', 'andreaf', 'andersonpires', 'vanessapires', 'marcosg', 'anaflor', 'julianag', 'elaine', 'danielc', 'luizcarlos', 'rodrigom', 'diegocosta', 'thiagoc', 'rodrigocosta', 'robertag', 'fabianosilva', 'cristianog', 'marcio', 'renatac', 'patriciapereira', 'gabriela', 'eliana', 'marco', 'roberto', 'anaflavia', 'davilucas', 'patriciav', 'rodrigo', 'lucas', 'andre', 'carla', 'fernando', 'marcelo', 'ana', 'maria', 'carlos', 'lucaspires', 'robertog', 'robertosantos', 'fernandapires', 'carlasantos', 'patriciapires', 'carlalima', 'fernandap', 'marcelop', 'andersonpereira', 'marcospires', 'fernandoc', 'carolp', 'victorp', 'carlosrodrigues', 'paulorocha', 'danilop', 'elainem', 'renatapires'];
+                var acoes = ['Acabou De Se Registrar'];
+                var nomeRandom = nomes[Math.floor(Math.random() * nomes.length)];
+                var acaoRandom = acoes[Math.floor(Math.random() * acoes.length)];
+                var mensagem = nomeRandom + ' ' + acaoRandom + ' ';
+
+                toastr.success(mensagem);
+            }
+
+            setInterval(showNotification, Math.floor(Math.random() * 8000) + 3000);
+        });
+
+        // Função para alternar a exibição do menu suspenso e fechar o outro menu, se aberto
+        function toggleDropdown(id, otherId) {
+            var dropdown = document.getElementById(id);
+            var otherDropdown = document.getElementById(otherId);
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+                otherDropdown.style.display = 'none'; // Fecha o outro menu
+            }
+        }
+
+        // Função para validar o formulário de registro
+        function validateRegistroForm() {
+            var usuario = document.getElementById('registroUsuario').value;
+            var senha = document.getElementById('registroSenha').value;
+            var chavePix = document.getElementById('registroChavePix').value;
+            var nomeBanco = document.getElementById('registroNomeBanco').value;
+
+            // Verifica se algum campo está vazio
+            if (!usuario || !senha || !chavePix || !nomeBanco) {
+                document.getElementById('registroErrorMessage').innerText = 'Todos os campos são obrigatórios.';
+                return false; // Impede o envio do formulário
+            }
+
+            return true; // Permite o envio do formulário
+        }
+
+        // Função para validar o formulário de login
+        function validateLoginForm() {
+            var usuario = document.getElementById('usuario').value;
+            var senha = document.getElementById('senha').value;
+
+            // Verifica se algum campo está vazio
+            if (!usuario || !senha) {
+                document.getElementById('loginErrorMessage').innerText = 'Por favor, preencha todos os campos.';
+                return false; // Impede o envio do formulário
+            }
+
+            return true; // Permite o envio do formulário
+        }
+        
+         function scrollPageDown() {
+        window.scrollBy(0, window.innerHeight); // Rola a página para baixo em uma quantidade igual à altura da janela do navegador
+    }
+        
+        
+    </script>
+</body>
+
+</html>
